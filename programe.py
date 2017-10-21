@@ -14,14 +14,19 @@ def add_person():
   age = input("Enter Age")
   
   file = open("people.txt", "a")
-  file.write(first_name + "\n")
-  file.write(last_name + "\n")
-  file.write(team + "\n")
-  file.write(age + "\n")
+  file.write(first_name + "," + last_name + "," + team + "," + age + "\n")
   file.close()
   
 def view_people():
-  print("View people")
+    #person_details = {}
+    read_people = open("people.txt","r")
+    details = [line.split(',') for line in read_people.readlines()]
+    for i in details:
+        print(i)
+    # for i in details:
+        # first_name, last_name, team, age = [a.split() for a in i.split(':')]
+    # person_details.setdefault(details, []).append(details)
+    # print(person_details)
   
 def view_stats():
   print("The stats")
