@@ -29,8 +29,18 @@ def view_people():
     # print(person_details)
   
 def view_stats():
-  print("The stats")
-
+    read_people = open("people.txt","r")
+    details = [line.split(',') for line in read_people.readlines()]
+    count = 0
+    for i in details:
+        count += 1
+        i[-1] = i[-1].strip()
+        
+    details_avg = [age[3] for age in details]
+    sum_list = sum(map(int, details_avg))
+    average_age = sum_list / count
+    print("There are : {} people stored with an average age of {}".format(count, average_age))
+    
 def menu_loop():
     while True:
         option = show_menu() #calls the showmenu function and stores the value in option
