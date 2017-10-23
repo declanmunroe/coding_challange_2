@@ -41,6 +41,27 @@ def view_stats():
     average_age = sum_list / count
     print("There are : {} people stored with an average age of {}".format(count, average_age))
     
+def team_average_age():
+    with open("people.txt", "r") as f:
+        d = {}
+        for line in f.readlines():
+            line = line.split(',')
+            
+            key = line[2].strip()
+            value = line[3].strip()
+            
+            if key in d:
+              d[key].append(value)
+            else:
+              d[key] = [value]
+              
+    #team_age_total = 0
+    for key, value in d.items():
+        print(key, value)
+    
+    
+    
+    
 def menu_loop():
     while True:
         option = show_menu() #calls the showmenu function and stores the value in option
@@ -50,6 +71,7 @@ def menu_loop():
             view_people()
         elif option == "3":
             view_stats()
+            team_average_age()
         elif option == "4":
             break
         else:
